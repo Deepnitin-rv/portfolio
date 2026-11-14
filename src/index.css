@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #050814;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* Glassmorphic surface utility */
+.glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.72) 0%,
+    rgba(10, 15, 32, 0.62) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 20px 50px -24px rgba(2, 6, 23, 0.85);
+}
+
+.glass-card-hover {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.32);
+  box-shadow: 0 24px 60px -24px rgba(37, 99, 235, 0.25);
+}
+
+/* Subtle ambient gradient drift (compositor-only transforms) */
+@keyframes driftSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.05);
+  }
+}
+
+@keyframes driftSlowReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-24px, 18px, 0) scale(1.04);
+  }
+}
+
+.animate-drift-slow {
+  animation: driftSlow 16s ease-in-out infinite;
+}
+
+.animate-drift-reverse {
+  animation: driftSlowReverse 20s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-drift-slow,
+  .animate-drift-reverse {
+    animation: none;
+  }
+  .glass-card-hover:hover {
+    transform: none;
+  }
+}
