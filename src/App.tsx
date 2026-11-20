@@ -10,6 +10,7 @@ import { About } from './components/About';
 import { Education } from './components/Education';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
+import { PythonLab } from './components/PythonLab';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
@@ -33,6 +34,7 @@ export default function App() {
         <Education />
         <Skills />
         <Projects />
+        <PythonLab />
         <Contact />
       </main>
 
